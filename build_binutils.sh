@@ -1,7 +1,7 @@
 #!/bin/sh
 
-package="gdb"
-version="8.3"
+package="binutils"
+version="2.33.1"
 name="$package-$version"
 
 source_dir="/tmp/"
@@ -13,4 +13,8 @@ tar xf $name.tar.xz
 mkdir $build_dir && cd $build_dir
 /tmp/$name/configure --prefix=/usr --target=avr
 make -C $build_dir -j$(nproc)
+make -C $build_dir -j$(nproc) install
+cd /
+rm $build_dir -rfv
+rm $source_dir/$name -rfv
 
