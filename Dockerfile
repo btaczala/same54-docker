@@ -24,11 +24,10 @@ RUN cd /tmp/gcc-avr && make -j$(nproc) install
 RUN avr-g++ --version
 
 # building GDB
-RUN cd /tmp
-RUN wget https://ftp.gnu.org/gnu/gdb/gdb-8.3.tar.xz
-RUN tar xf gdb-8.3.tar.xz
-RUN mkdir /tmp/gdb-build && cd /tmp/gdb-build
-RUN /tmp/gdb-8.3/configure --prefix=/usr --target=avr
-RUN make -C /tmp/gdb-build install -j$(nproc)
+RUN cd /tmp && wget https://ftp.gnu.org/gnu/gdb/gdb-8.3.tar.xz && tar xf gdb-8.3.tar.xz
+
+RUN mkdir /tmp/gdb-build && cd /tmp/gdb-build && /tmp/gdb-8.3/configure --prefix=/usr --target=avr
+RUN cd /tmp/gdb-build && make -j$(nproc)
+RUN cd /tmp/gdb-build && make install -j$(nproc)
 
 RUN apk add cmake --no-cache
