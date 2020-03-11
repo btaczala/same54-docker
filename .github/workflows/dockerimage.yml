@@ -11,4 +11,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag avr-gcc-cmake:$(date +%s)
+      run: docker build . --file Dockerfile --tag same54-gcc-cmake:$(date +%s)
